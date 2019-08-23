@@ -1,0 +1,8 @@
+venv
+config.py
+*.xml
+error.txt
+*.pyc
+*.iml
+last_earthquake.txt
+
