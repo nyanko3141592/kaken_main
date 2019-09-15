@@ -4,7 +4,6 @@ import time
 import re
 
 from twython import Twython,TwythonError
-from timeout_decorator import timeout, TimeoutError
 
 import config
 
@@ -17,7 +16,6 @@ api = Twython(config.CONSUMER_KEY, config.CONSUMER_SECRET, config.ACCESS_KEY, co
 print('Auth Done!')
 
 
-@timeout(5)
 def get_new_tweet():
     global user_name
     try:
