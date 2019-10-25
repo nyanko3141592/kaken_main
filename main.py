@@ -77,7 +77,7 @@ def main():
             if earthquake_log(new_earthquake):
                 if int(get_info_earthquake(new_earthquake)[2]) >= 3:
                     print("close")
-                    #処理送信
+                    # ESPに命令を送信
             else:
                 pass
             time.sleep(5)
