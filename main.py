@@ -8,7 +8,7 @@ from twython import Twython,TwythonError
 import config
 
 global user_name
-user_name = "zishin3255"
+user_name = "nya3_neko2"
 
 
 #twitterの認証情報を入力
@@ -22,6 +22,7 @@ def get_new_tweet():
         user_timeline = api.get_user_timeline(screen_name=user_name, count=1)
         for tweet in user_timeline:
             now_tweet = tweet['text']
+        print(now_tweet)
         return now_tweet
     except KeyboardInterrupt:
         pass
@@ -71,20 +72,17 @@ def get_info_earthquake(string):
 def main():
     # 起動処理　地震速報アカウントの最新ツイートを取得　書き込み
     earthquake_log(get_new_tweet())
-    try:
-        while True:
-            new_earthquake = get_new_tweet() #real
-            if earthquake_log(new_earthquake):
-                if int(get_info_earthquake(new_earthquake)[2]) >= 3:
-                    print("close")
-                    # ESPに命令を送信
+    # try:
+    while True:
+        new_earthquake = get_new_tweet()
+        if earthquake_log(new_earthquake):
+            if read_last_line() == new_earthquake:
+                print(new_earthquake)
+                print("NEW TWEET")
+            #     実行
             else:
                 pass
-            time.sleep(5)
-    except KeyboardInterrupt:
-        pass
-    except Exception as e:
-        write_error(e)
+        time.sleep(5)
 
 
 if __name__ == '__main__':
